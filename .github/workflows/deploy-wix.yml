@@ -1,0 +1,31 @@
+# Auto-deploy to Wix-Managed Headless on every push.
+# Requires repo secret WIX_API_KEY (Wix dashboard → API Keys).
+# Activates once the project has been initialised once with `npm create @wix/new@latest init`
+# (which creates wix.config.json + package.json in the repo).
+name: Deploy to Wix Headless
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm ci || npm install
+      - name: Authenticate Wix CLI (CI)
+        run: npx wix login --api-key "$WIX_API_KEY"
+        env:
+          WIX_API_KEY: ${{ secrets.WIX_API_KEY }}
+      - name: Build
+        run: npx wix build
+      - name: Release (publish)
+        run: npx wix release
+        env:
+          WIX_API_KEY: ${{ secrets.WIX_API_KEY }}
