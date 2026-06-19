@@ -584,6 +584,30 @@ section { padding-block: clamp(3.5rem, 8vw, 7rem); }
   .dropdown a { padding-left: 1.2rem; border-bottom: 1px solid var(--line); }
 }
 
+
+/* ---------- Second-level flyout (PNG sub-sections) ---------- */
+.has-sub { position: relative; }
+.has-sub > a .sub-caret { float: right; margin-left: 1rem; opacity: 0.55; }
+.subdropdown {
+  position: absolute; top: -0.45rem; right: 100%; min-width: 14rem;
+  background: var(--ground); border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: 0 14px 34px rgba(22,20,15,0.14);
+  list-style: none; margin: 0; padding: 0.4rem;
+  opacity: 0; visibility: hidden; transform: translateX(6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 61;
+}
+.has-sub:hover > .subdropdown,
+.has-sub:focus-within > .subdropdown { opacity: 1; visibility: visible; transform: translateX(0); }
+.subdropdown a { display: block; padding: 0.6rem 0.8rem; border-radius: 3px; white-space: nowrap; }
+.subdropdown a::after { display: none; }
+.subdropdown a:hover { background: var(--paper-2); }
+
+@media (max-width: 900px) {
+  .subdropdown { position: static; opacity: 1; visibility: visible; transform: none; box-shadow: none; border: 0; margin: 0; padding: 0; min-width: 0; }
+  .subdropdown a { padding-left: 2.2rem; border-bottom: 1px solid var(--line); }
+  .has-sub > a .sub-caret { display: none; }
+}
+
 </style></head>
 <body id="top">
 <div class="utility"><div class="wrap-wide"><span><b>Bungle Group</b> — Australian Food Export &amp; Supply Chain</span><span>Est. 2008 · Newtown VIC · Mildura · PNG &amp; the Pacific</span></div></div>
@@ -592,7 +616,8 @@ section { padding-block: clamp(3.5rem, 8vw, 7rem); }
 <ul class="nav-links" id="nav-links">
 <li><a href="#about">About</a></li><li><a href="#what-we-do">What we do</a></li><li><a href="#products">Products</a></li>
 <li class="has-dropdown"><button type="button" class="nav-drop-toggle" aria-expanded="false">Customers <span class="caret" aria-hidden="true">&#9662;</span></button>
-<ul class="dropdown"><li><a href="#retail">Retail Customers</a></li><li><a href="#institutional">Institutional Customers</a></li><li><a href="#png-pacific">PNG &amp; the Pacific</a></li></ul></li>
+<ul class="dropdown"><li><a href="#retail">Retail Customers</a></li><li><a href="#institutional">Institutional Customers</a></li>
+<li class="has-sub"><a href="#png-pacific">PNG &amp; the Pacific <span class="sub-caret" aria-hidden="true">&#8250;</span></a><ul class="subdropdown"><li><a href="#png">In-country presence</a></li><li><a href="#mining">Mine-site catering</a></li><li><a href="#airline">Airline catering</a></li><li><a href="#hotels">Hotels &amp; hospitality</a></li></ul></li></ul></li>
 <li><a href="#quality">Quality</a></li><li><a href="#contact">Contact</a></li><li><a href="#contact" class="btn btn-primary">Get a quote</a></li>
 </ul><button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="nav-links">Menu</button></nav></header>
 <main>
