@@ -18,7 +18,8 @@ Fonts (needs an internet connection).
 | `about.html` | About — story, evolution timeline, key facts |
 | `what-we-do.html` | Export · Procurement · Supply chain & 3PL · Domestic produce |
 | `markets.html` | Markets — PNG/Pacific, mining, government/UN, airline, hotels, retail |
-| `products.html` | Products — fresh, frozen, dairy, FMCG + seasonal calendar + fruit exports |
+| `retail.html` | Australian retail — the major-retailer credential, what retailers require |
+| `products.html` | Products — fresh, frozen, dairy, FMCG + citrus/grapes + seasonal calendar + fruit exports |
 | `quality.html` | Quality — certifications explained, integrity, security |
 | `contact.html` | Contact / get a quote |
 
