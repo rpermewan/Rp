@@ -1,0 +1,35 @@
+name: Daily test email
+
+# Sends a test email every day via the Resend REST API.
+#
+# Requirements:
+#   - A GitHub Actions repository secret named RESEND_API_KEY containing a real
+#     Resend key (re_...). Add it under:
+#       Settings > Secrets and variables > Actions > New repository secret
+#     (The cloud-environment Secret of the same name is NOT visible to GitHub
+#     Actions — it must be added separately here.)
+#
+# The schedule runs in UTC. Adjust the cron line below to change the time.
+
+on:
+  schedule:
+    # 13:00 UTC every day. https://crontab.guru/#0_13_*_*_*
+    - cron: "0 13 * * *"
+  # Allow running it on demand from the Actions tab to test.
+  workflow_dispatch:
+
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Send test email
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+        run: |
+          ./scripts/send-email.sh \
+            "richard@bunglegroup.com" \
+            "Daily test email — $(date -u '+%Y-%m-%d')" \
+            "This is your automated daily test email, sent at $(date -u '+%Y-%m-%d %H:%M UTC') via Resend."
