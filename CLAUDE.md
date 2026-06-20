@@ -2,40 +2,23 @@
 
 ## Email
 
-**Always send email via Resend, using the Resend REST API directly.** Do not
-use Gmail, Outlook, Microsoft 365, or any other email method.
+**Always send email via Zapier → Gmail.** Do not use Resend, Outlook,
+Microsoft 365, or any other email method.
 
-This project does **not** use a Resend MCP server. Instead, the cloud
-environment is configured for direct API access:
-
-- Allowed domain: `api.resend.com`
-- Secret: `RESEND_API_KEY` (a real `re_...` key, stored in the environment's
-  **Secrets**, not plaintext env vars)
+The Zapier connection is configured and authenticated in this environment, with
+the **Gmail** app enabled.
 
 ### How to send
 
-Use the helper script:
+1. Call `list_enabled_zapier_actions` first to get the exact action key and
+   parameter schema (Gmail, `selected_api` = `GoogleMailV2CLIAPI`).
+2. Send with `execute_zapier_write_action` using the `message` action
+   (tool name `gmail_send_email`).
 
-```bash
-./scripts/send-email.sh "to@example.com" "Subject line" "Body text"
-```
-
-Or call the API directly:
-
-```bash
-curl -s -X POST https://api.resend.com/emails \
-  -H "Authorization: Bearer $RESEND_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "onboarding@resend.dev",
-    "to": ["to@example.com"],
-    "subject": "Subject line",
-    "text": "Body text"
-  }'
-```
+Required params: `to`, `subject`, `body`. Optional: `cc`, `bcc`, `from`,
+`body_type` (`plain` or `html`), `reply_to`, attachments via `file`.
 
 Notes:
-- Replace the `from` address with a verified Resend sending domain once one is
-  set up; `onboarding@resend.dev` only works for testing to your own account.
-- `RESEND_API_KEY` must be a real key. If it equals `re_your_actual_key` it is
-  still the placeholder and sending will fail with a 401.
+- Emails send from the connected Gmail account's primary address by default.
+- The default recipient for tests and notifications is
+  `richard@bunglegroup.com`.
