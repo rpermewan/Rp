@@ -42,6 +42,13 @@ other email method.
    Zapier picker can't reach the message, fall back to `create_draft_email` with
    an explicit subject. Set To/CC explicitly.
 
+> **Always include the full historical email chain in every reply draft.**
+> Prefer `create_draft_reply`, which quotes the original thread automatically.
+> If you must fall back to `create_draft_email`, read the original message with
+> Office 365 first and paste the prior conversation (quoted, beneath the new
+> reply) into the body — never leave a reply draft as a bare message with the
+> thread history stripped off.
+
 ⚠️ The Zapier send actions resolve the target message with a fuzzy LLM picker
 that can ignore the exact message ID you pass and act on a similarly-titled
 message instead. After creating a draft, verify with Office 365 search what was
@@ -102,6 +109,8 @@ should be applied to **all** future reply drafting, not any one email.
 
 - Put drafts in the **Drafts** folder; never send them. Richard reviews and
   sends himself.
+- **Include the full historical email chain** beneath every reply (see the
+  Email workflow note above) so Richard has the context when reviewing.
 - Use the recipients/CC he would actually use, and set them **explicitly**
   rather than relying on a tool's auto "reply-all" guess.
 - ⚠️ The Zapier Microsoft Office 365 actions resolve the target message with a
