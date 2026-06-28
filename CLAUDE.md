@@ -18,30 +18,35 @@ Richard himself: `richard@bunglegroup.com`.**
 
 ## Email
 
-**All email is handled through Zapier** (the Zapier MCP server, using the
-Microsoft Office 365 actions on Richard's `richard@bunglegroup.com` mailbox).
-Do not use Resend, Gmail APIs, or any other email method.
+Two separate tools, each with one job. Do not use Resend, Gmail APIs, or any
+other email method.
+
+- **Office 365 (Microsoft 365 MCP) does ALL search and reading.** Use it to find
+  and read messages, search folders, and pull message bodies/attachments (e.g.
+  `outlook_email_search`, `read_resource`). Always locate the target message
+  here first.
+- **Zapier does sending only** (the Zapier MCP Office 365 write actions —
+  `create_draft_reply` / `create_draft_email`, and any actual send). Never use
+  Zapier for searching.
 
 > Subject to **RULE #1** above: the only permitted recipient of any *sent* email
 > is `richard@bunglegroup.com`. Everything Richard asks you to respond to on
 > someone else's behalf is created as a **draft** (Outlook Drafts folder) for him
-> to review and send himself — never sent.
+> to review and send himself — never sent. There is no scenario in which Claude
+> sends to anyone else.
 
-### How to work with email
+### Workflow
 
-- **Reading / searching:** use the Zapier Office 365 read actions (e.g.
-  `find_emails`, `find_emails_in_folder`) to locate messages.
-- **Drafting a reply:** use `create_draft_reply` (keeps the message in-thread).
-  If its picker can't reach the target message, fall back to
-  `create_draft_email` with an explicit subject. Set To/CC explicitly.
-- **Sending:** only ever to `richard@bunglegroup.com`. There is no scenario in
-  which Claude sends to anyone else.
+1. **Search/read with Office 365** to find the exact message and its details.
+2. **Draft with Zapier** — `create_draft_reply` to keep it in-thread; if the
+   Zapier picker can't reach the message, fall back to `create_draft_email` with
+   an explicit subject. Set To/CC explicitly.
 
-⚠️ The Zapier Microsoft Office 365 actions resolve the target message with a
-fuzzy LLM picker that can ignore the exact message ID you pass and act on a
-similarly-titled message instead. After creating a draft, verify what was
-actually created (re-read the Drafts folder), and avoid the delete action for
-precise targeting — it has mis-fired on the wrong message.
+⚠️ The Zapier send actions resolve the target message with a fuzzy LLM picker
+that can ignore the exact message ID you pass and act on a similarly-titled
+message instead. After creating a draft, verify with Office 365 search what was
+actually created (re-read the Drafts folder), and avoid the Zapier delete action
+for precise targeting — it has mis-fired on the wrong message.
 
 ## Drafting email replies in Richard's voice
 
