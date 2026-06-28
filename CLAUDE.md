@@ -2,40 +2,27 @@
 
 ## Email
 
-**Always send email via Resend, using the Resend REST API directly.** Do not
-use Gmail, Outlook, Microsoft 365, or any other email method.
+**Always send email via Zapier.** Do not use Resend, Gmail, Outlook,
+Microsoft 365, or any other email method.
 
-This project does **not** use a Resend MCP server. Instead, the cloud
-environment is configured for direct API access:
-
-- Allowed domain: `api.resend.com`
-- Secret: `RESEND_API_KEY` (a real `re_...` key, stored in the environment's
-  **Secrets**, not plaintext env vars)
+Use the **Email by Zapier** action (`selected_api: ZapierMailCLIAPI`,
+action `outbound`), which sends from a neutral `zapiermail.com` address.
 
 ### How to send
 
-Use the helper script:
-
-```bash
-./scripts/send-email.sh "to@example.com" "Subject line" "Body text"
-```
-
-Or call the API directly:
-
-```bash
-curl -s -X POST https://api.resend.com/emails \
-  -H "Authorization: Bearer $RESEND_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "onboarding@resend.dev",
-    "to": ["to@example.com"],
-    "subject": "Subject line",
-    "text": "Body text"
-  }'
-```
+1. Load the Zapier execute tool via `ToolSearch`
+   (`select:mcp__Zapier__execute_zapier_write_action`).
+2. If needed, enable the app first with `enable_zapier_action`
+   (`selected_api: ZapierMailCLIAPI`) — no auth is required.
+3. Send with `execute_zapier_write_action`:
+   - `selected_api`: `ZapierMailCLIAPI`
+   - `action`: `outbound`
+   - `params`: `to` (required), `subject` (required), `body` (required;
+     HTML or plain text), and optionally `from_name`, `reply_to`, `cc`,
+     `bcc`.
 
 Notes:
-- Replace the `from` address with a verified Resend sending domain once one is
-  set up; `onboarding@resend.dev` only works for testing to your own account.
-- `RESEND_API_KEY` must be a real key. If it equals `re_your_actual_key` it is
-  still the placeholder and sending will fail with a 401.
+- Limited to 10 email sends per hour and 5 recipients per field.
+- The sender address is a generated `@zapiermail.com` address; set
+  `from_name` for a friendly display name. Sending from a custom domain is
+  not supported via this path.
