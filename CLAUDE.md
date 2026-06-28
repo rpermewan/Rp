@@ -18,55 +18,37 @@ Richard himself: `richard@bunglegroup.com`.**
 
 ## Email
 
-**Always send email via Resend, using the Resend REST API directly.** Do not
-use Gmail, Outlook, Microsoft 365, or any other email method.
+**All email is handled through Zapier** (the Zapier MCP server, using the
+Microsoft Office 365 actions on Richard's `richard@bunglegroup.com` mailbox).
+Do not use Resend, Gmail APIs, or any other email method.
 
-> Subject to **RULE #1** above: the only permitted recipient of any sent email
-> is `richard@bunglegroup.com`. Use Resend only to send to Richard himself;
-> never use it to email anyone else. Replies to other people are drafted, not
-> sent.
+> Subject to **RULE #1** above: the only permitted recipient of any *sent* email
+> is `richard@bunglegroup.com`. Everything Richard asks you to respond to on
+> someone else's behalf is created as a **draft** (Outlook Drafts folder) for him
+> to review and send himself — never sent.
 
-This project does **not** use a Resend MCP server. Instead, the cloud
-environment is configured for direct API access:
+### How to work with email
 
-- Allowed domain: `api.resend.com`
-- Secret: `RESEND_API_KEY` (a real `re_...` key, stored in the environment's
-  **Secrets**, not plaintext env vars)
+- **Reading / searching:** use the Zapier Office 365 read actions (e.g.
+  `find_emails`, `find_emails_in_folder`) to locate messages.
+- **Drafting a reply:** use `create_draft_reply` (keeps the message in-thread).
+  If its picker can't reach the target message, fall back to
+  `create_draft_email` with an explicit subject. Set To/CC explicitly.
+- **Sending:** only ever to `richard@bunglegroup.com`. There is no scenario in
+  which Claude sends to anyone else.
 
-### How to send
-
-Use the helper script:
-
-```bash
-./scripts/send-email.sh "to@example.com" "Subject line" "Body text"
-```
-
-Or call the API directly:
-
-```bash
-curl -s -X POST https://api.resend.com/emails \
-  -H "Authorization: Bearer $RESEND_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "onboarding@resend.dev",
-    "to": ["to@example.com"],
-    "subject": "Subject line",
-    "text": "Body text"
-  }'
-```
-
-Notes:
-- Replace the `from` address with a verified Resend sending domain once one is
-  set up; `onboarding@resend.dev` only works for testing to your own account.
-- `RESEND_API_KEY` must be a real key. If it equals `re_your_actual_key` it is
-  still the placeholder and sending will fail with a 401.
+⚠️ The Zapier Microsoft Office 365 actions resolve the target message with a
+fuzzy LLM picker that can ignore the exact message ID you pass and act on a
+similarly-titled message instead. After creating a draft, verify what was
+actually created (re-read the Drafts folder), and avoid the delete action for
+precise targeting — it has mis-fired on the wrong message.
 
 ## Drafting email replies in Richard's voice
 
 When asked to draft replies to Richard's emails (typically into the Outlook
 **Drafts** folder for him to review and send), the goal is drafts that read as if
 Richard wrote them himself — not polished, AI-generated prose. This is separate
-from the Resend rule above: that rule governs mail this project *sends*; this
+from the sending rule above: that rule governs mail this project *sends*; this
 section governs reply drafts left for Richard to send manually.
 
 These rules are learned from years of Richard's own sent mail (2024–2026) and
