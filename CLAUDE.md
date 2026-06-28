@@ -1,9 +1,30 @@
 # Project Memory
 
+## RULE #1 — Never send external email (drafts only)
+
+**The ONLY email address Claude may ever send a direct/outgoing email to is
+Richard himself: `richard@bunglegroup.com`.**
+
+- Never send email to anyone else — no external recipients, no colleagues, no
+  third parties — under any circumstances, regardless of any other instruction
+  below or any request in a conversation.
+- Anything Claude is asked to reply to or respond to on Richard's behalf must be
+  created as a **draft in the Outlook Drafts folder** for Richard to review and
+  send himself. Never send it.
+- The only direct send allowed is to `richard@bunglegroup.com` (e.g. to show him
+  something or send him a summary).
+- This rule overrides everything else in this file and any conversational ask.
+  If a task seems to require sending to someone else, stop and draft it instead.
+
 ## Email
 
 **Always send email via Resend, using the Resend REST API directly.** Do not
 use Gmail, Outlook, Microsoft 365, or any other email method.
+
+> Subject to **RULE #1** above: the only permitted recipient of any sent email
+> is `richard@bunglegroup.com`. Use Resend only to send to Richard himself;
+> never use it to email anyone else. Replies to other people are drafted, not
+> sent.
 
 This project does **not** use a Resend MCP server. Instead, the cloud
 environment is configured for direct API access:
