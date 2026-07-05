@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Richard's Dashboard</title>
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --surface-2: #ffffff;
+    --page: #f9f9f7;
+    --text-primary: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --border: rgba(11,11,11,0.10);
+    --gridline: #e1e0d9;
+
+    --blue: #2a78d6;
+    --aqua: #1baf7a;
+    --yellow: #eda100;
+    --violet: #4a3aa7;
+    --red: #e34948;
+
+    --good: #0ca30c;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+
+    --good-bg: #e8f7e8;
+    --warning-bg: #fff4e0;
+    --serious-bg: #fdeae2;
+    --critical-bg: #fbe6e6;
+    --blue-bg: #e9f1fc;
+    --aqua-bg: #e3f7ef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-1: #1a1a19;
+      --surface-2: #212120;
+      --page: #0d0d0d;
+      --text-primary: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --border: rgba(255,255,255,0.10);
+      --gridline: #2c2c2a;
+
+      --blue: #3987e5;
+      --aqua: #199e70;
+      --yellow: #c98500;
+      --violet: #9085e9;
+      --red: #e66767;
+
+      --good: #0ca30c;
+      --warning: #fab219;
+      --serious: #ec835a;
+      --critical: #d03b3b;
+
+      --good-bg: #0f2a10;
+      --warning-bg: #332608;
+      --serious-bg: #3a1f14;
+      --critical-bg: #3a1414;
+      --blue-bg: #16233a;
+      --aqua-bg: #0f2c22;
+    }
+  }
+  :root[data-theme="dark"] {
+    --surface-1: #1a1a19; --surface-2: #212120; --page: #0d0d0d;
+    --text-primary: #ffffff; --text-secondary: #c3c2b7; --text-muted: #898781;
+    --border: rgba(255,255,255,0.10); --gridline: #2c2c2a;
+    --blue: #3987e5; --aqua: #199e70; --yellow: #c98500; --violet: #9085e9; --red: #e66767;
+    --good-bg: #0f2a10; --warning-bg: #332608; --serious-bg: #3a1f14; --critical-bg: #3a1414;
+    --blue-bg: #16233a; --aqua-bg: #0f2c22;
+  }
+  :root[data-theme="light"] {
+    --surface-1: #fcfcfb; --surface-2: #ffffff; --page: #f9f9f7;
+    --text-primary: #0b0b0b; --text-secondary: #52514e; --text-muted: #898781;
+    --border: rgba(11,11,11,0.10); --gridline: #e1e0d9;
+    --blue: #2a78d6; --aqua: #1baf7a; --yellow: #eda100; --violet: #4a3aa7; --red: #e34948;
+    --good-bg: #e8f7e8; --warning-bg: #fff4e0; --serious-bg: #fdeae2; --critical-bg: #fbe6e6;
+    --blue-bg: #e9f1fc; --aqua-bg: #e3f7ef;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--page);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 24px 20px 80px; }
+
+  header.top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+  header.top h1 { font-size: 22px; margin: 0 0 4px; }
+  header.top p { margin: 0; color: var(--text-secondary); font-size: 13px; }
+  .sync-badge { font-size: 12px; color: var(--text-muted); background: var(--surface-2); border: 1px solid var(--border); border-radius: 20px; padding: 6px 12px; white-space: nowrap; }
+
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 28px; }
+  .stat-tile { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+  .stat-tile .n { font-size: 26px; font-weight: 600; line-height: 1.1; }
+  .stat-tile .l { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .stat-tile.crit .n { color: var(--critical); }
+  .stat-tile.warn .n { color: var(--warning); }
+
+  section { margin-bottom: 32px; }
+  section h2 { font-size: 15px; margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
+  section h2 .count { font-size: 12px; font-weight: 400; color: var(--text-muted); background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 2px 8px; }
+
+  .card { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; margin-bottom: 8px; }
+  .card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .card-main { flex: 1; min-width: 0; }
+  .card-title { font-size: 14px; font-weight: 600; margin: 0 0 3px; }
+  .card-sub { font-size: 12px; color: var(--text-secondary); margin: 0 0 6px; }
+  .card-snippet { font-size: 13px; color: var(--text-secondary); margin: 0; line-height: 1.45; }
+  .card-time { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
+
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .badge.critical { background: var(--critical-bg); color: var(--critical); }
+  .badge.warning { background: var(--warning-bg); color: #8a5a00; }
+  .badge.good { background: var(--good-bg); color: var(--good); }
+  .badge.email { background: var(--blue-bg); color: var(--blue); }
+  .badge.whatsapp { background: var(--aqua-bg); color: var(--aqua); }
+  .badge.muted { background: var(--surface-1); color: var(--text-muted); border: 1px solid var(--border); }
+
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue); display: inline-block; flex-shrink: 0; margin-top: 5px; }
+  .dot.unread { background: var(--blue); }
+
+  .tabbar { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+  .tabbar button { font-size: 12px; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text-secondary); cursor: pointer; }
+  .tabbar button.active { background: var(--text-primary); color: var(--page); border-color: var(--text-primary); }
+
+  .filterable[data-src="email"], .filterable[data-src="whatsapp"] { display: block; }
+  .hidden { display: none !important; }
+
+  .draft-card textarea { width: 100%; min-height: 90px; font-family: inherit; font-size: 13px; line-height: 1.5; border: 1px solid var(--border); border-radius: 8px; padding: 10px; background: var(--surface-1); color: var(--text-primary); resize: vertical; }
+  .draft-actions { display: flex; gap: 8px; margin-top: 8px; }
+  .draft-actions button { font-size: 12px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text-primary); cursor: pointer; }
+  .draft-actions button.primary { background: var(--blue); color: white; border-color: var(--blue); }
+  .draft-actions .status { font-size: 11px; color: var(--good); align-self: center; opacity: 0; transition: opacity .2s; }
+  .draft-actions .status.show { opacity: 1; }
+
+  .notice { font-size: 12px; color: var(--text-secondary); background: var(--warning-bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; }
+  .notice.demo { background: var(--aqua-bg); }
+  .notice strong { color: var(--text-primary); }
+
+  .style-panel { background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+  .style-panel h2 { margin-bottom: 8px; }
+  .style-panel code { background: var(--surface-1); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+
+  footer { text-align: center; font-size: 11px; color: var(--text-muted); padding-top: 20px; border-top: 1px solid var(--gridline); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div>
+      <h1>Richard's Dashboard</h1>
+      <p>Unified inbox &middot; urgent actions &middot; things you've said you'd do &middot; draft replies</p>
+    </div>
+    <div class="sync-badge" id="syncBadge">Loading…</div>
+  </header>
+
+  <div class="stat-row" id="statRow"></div>
+
+  <section>
+    <h2>🔥 Urgent Actions <span class="count" id="urgentCount"></span></h2>
+    <div id="urgentList"></div>
+  </section>
+
+  <section>
+    <h2>📥 Unified Inbox <span class="count" id="inboxCount"></span></h2>
+    <div class="tabbar">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="email">Email</button>
+      <button data-filter="whatsapp">WhatsApp</button>
+    </div>
+    <div class="notice demo"><strong>Note:</strong> Email items below are real, live data from your Outlook mailbox (Microsoft 365). WhatsApp items are placeholder/demo data — see the note at the bottom of the page for why.</div>
+    <div id="inboxList"></div>
+  </section>
+
+  <section>
+    <h2>✅ Things You've Said You'd Do <span class="count" id="commitCount"></span></h2>
+    <div id="commitList"></div>
+  </section>
+
+  <section>
+    <h2>✍️ Draft Replies — Email <span class="count" id="draftEmailCount"></span></h2>
+    <div id="draftEmailList"></div>
+  </section>
+
+  <section>
+    <h2>✍️ Draft Replies — WhatsApp <span class="badge muted">demo</span></h2>
+    <div id="draftWaList"></div>
+  </section>
+
+  <section>
+    <h2>🖋️ Your Writing Style Profile</h2>
+    <div class="style-panel" id="stylePanel"></div>
+  </section>
+
+  <footer id="footerNote"></footer>
+</div>
+
+<script>
+const DATA = {
+  lastSync: "2026-07-05T11:40:00Z",
+  user: { name: "Richard Permewan", email: "richard@bunglegroup.com" },
+
+  emailUnreadTotal: 46,
+  emailInboxTotal: 4672,
+
+  urgent: [
+    {
+      id: "u1", source: "email", level: "critical",
+      title: "Reminder: Request for TV Interview — Time Sensitive (REFLWH070126)",
+      from: "juan-nowmedia.tv@shared1.ccsend.com",
+      snippet: "Your response is requested — Exclusive Television On-Air Contributor Invitation. Time-sensitive, reminder follow-up.",
+      time: "2026-07-04T21:01:15Z"
+    },
+    {
+      id: "u2", source: "email", level: "critical",
+      title: "Coles Booking Cancellation: 70012000 — Eastern Creek CDC, tomorrow 04:00",
+      from: "no-reply@c3reservations.com",
+      snippet: "The booking with reference 70012000 has been cancelled. Needs to be rebooked before the delivery slot is lost.",
+      time: "2026-07-04T19:33:53Z"
+    },
+    {
+      id: "u3", source: "email", level: "warning",
+      title: "Security Alert: Please check a recent card transaction",
+      from: "no-reply@edm.cba.com.au",
+      snippet: "CBA flagged a transaction for review — worth a quick check even though it may be routine.",
+      time: "2026-07-05T06:05:24Z"
+    },
+    {
+      id: "u4", source: "whatsapp", level: "warning", demo: true,
+      title: "Christian J — needs CHEP pallet return sign-off before EOD",
+      from: "+61 4XX XXX XXX (Christian J)",
+      snippet: "(Demo) \"Need your sign off on the CHEP pallet return before EOD, can you approve?\"",
+      time: "2026-07-05T09:15:00Z"
+    }
+  ],
+
+  inbox: [
+    { id: "e1", source: "email", unread: true, subject: "Reminder: Request for TV Interview — Time Sensitive", from: "juan-nowmedia.tv@shared1.ccsend.com", snippet: "Your response is requested — Exclusive Television On-Air Contributor Invitation…", time: "2026-07-04T21:01:15Z" },
+    { id: "e2", source: "email", unread: true, subject: "Coles Booking Cancellation: 70012000 on 05/07/2026", from: "no-reply@c3reservations.com", snippet: "The booking with reference number 70012000 has been Cancelled…", time: "2026-07-04T19:33:53Z" },
+    { id: "e3", source: "email", unread: true, subject: "Security Alert: Please check a recent card transaction", from: "no-reply@edm.cba.com.au", snippet: "Please check a recent card transaction on your account…", time: "2026-07-05T06:05:24Z" },
+    { id: "e4", source: "email", unread: true, subject: "Uh-oh, your calendar integration is not working", from: "hello@leavedates.com", snippet: "Your Google/Outlook company calendar is not working…", time: "2026-07-05T11:01:02Z" },
+    { id: "e5", source: "email", unread: false, subject: "RE: RFQ - Frozen Chips — NCS Lihir", from: "Jessica.Sana@ncs.com.pg", snippet: "Hi Richard, we will skip this boat for F&Vs. We'll check our inventory in the coming…", time: "2026-07-03T22:24:33Z" },
+    { id: "e6", source: "email", unread: false, subject: "RE: Chocolate Order & Cheese Quotation — NCS Lihir", from: "Jessica.Sana@ncs.com.pg", snippet: "Hi David, please see attached PO for the attached quote…", time: "2026-07-03T23:10:36Z" },
+    { id: "e7", source: "email", unread: true, subject: "SOH", from: "orders@bunglegroup.com", snippet: "Internal stock-on-hand report for Woolworths…", time: "2026-07-03T22:04:59Z" },
+    { id: "e8", source: "email", unread: true, subject: "Get Started: Send Your First WhatsApp Message via API", from: "noreply@wasenderapi.com", snippet: "Onboarding email for the WASenderAPI account you just created…", time: "2026-07-05T10:20:04Z" },
+
+    { id: "w1", source: "whatsapp", demo: true, unread: true, contact: "Dani (Bungle Group)", snippet: "(Demo) \"Did you see the SOH report for today? Numbers look a bit off on the citrus line.\"", time: "2026-07-05T08:40:00Z" },
+    { id: "w2", source: "whatsapp", demo: true, unread: true, contact: "David W (Bungle Group)", snippet: "(Demo) \"Confirming the Mainfreight delivery for the 8th — all good on your end?\"", time: "2026-07-05T09:02:00Z" },
+    { id: "w3", source: "whatsapp", demo: true, unread: true, contact: "Christian J (Bungle Group)", snippet: "(Demo) \"Need your sign off on the CHEP pallet return before EOD, can you approve?\"", time: "2026-07-05T09:15:00Z" },
+    { id: "w4", source: "whatsapp", demo: true, unread: false, contact: "Jessica Sana (NCS Lihir)", snippet: "(Demo) \"Thanks Richard — will confirm the next vessel slot by Friday.\"", time: "2026-07-04T13:00:00Z" }
+  ],
+
+  commitments: [
+    {
+      id: "c1", status: "done",
+      text: "\"I'll find the summary notes and send them through shortly.\"",
+      context: "To Brett/Jay (TractionIT) &amp; Dani — re: Microsoft Graph Interface for Claude",
+      made: "2026-07-02T06:07:13Z",
+      resolvedNote: "Fulfilled the same day — sent as an attachment at 09:02 (\"Please see attached\")."
+    },
+    {
+      id: "c2", status: "open",
+      text: "Have the team double-check the Coles citrus figures before final submission.",
+      context: "To Pippa Masters (Coles) — re: Coles Citrus Supplier Scoping Documents",
+      made: "2026-07-01T04:28:18Z",
+      resolvedNote: null
+    }
+  ],
+
+  draftsEmail: [
+    {
+      id: "de1", to: "juan-nowmedia.tv@shared1.ccsend.com", subject: "RE: Request for TV Interview - Time Sensitive REFLWH070126",
+      body: "Hi Juan,\n\nThanks for the follow-up. Before I can confirm, can you send through a bit more detail on the segment — topic, timing and what's expected from me?\n\nKindest Regards\n\nRichard"
+    },
+    {
+      id: "de2", to: "coles@bunglegroup.com", subject: "Eastern Creek CDC booking cancelled — needs rebooking",
+      body: "Hi team,\n\nOur Eastern Creek CDC booking (ref 70012000) for tomorrow 04:00 has been cancelled. Can someone rebook this ASAP so we don't miss the slot?\n\nKindest Regards\n\nRichard"
+    },
+    {
+      id: "de3", to: "Jessica.Sana@ncs.com.pg", subject: "RE: RFQ - Frozen Chips - Quotation BUN-2026-0701-001",
+      body: "Hi Jessica,\n\nUnderstood, thanks for confirming. Let us know once you've checked inventory and we'll plan around it.\n\nKindest Regards\n\nRichard"
+    }
+  ],
+
+  draftsWhatsapp: [
+    { id: "dw1", to: "Dani (Bungle Group)", demo: true, body: "Yep looking at it now, will confirm shortly." },
+    { id: "dw2", to: "David W (Bungle Group)", demo: true, body: "All good, confirmed." },
+    { id: "dw3", to: "Christian J (Bungle Group)", demo: true, body: "Approved, go ahead." }
+  ],
+
+  style: {
+    greeting: "Usually “Hi [Name],” or “Dear [Name],” for slightly more formal / external contacts. Multiple recipients get “Hi [Name] and [Name2],”. Quick internal notes sometimes skip the greeting.",
+    body: "Short, direct sentences — gets straight to the point, no filler. Common openers: “Can you please…”, “Are you able to…”, “Please see attached”, “Please let me know if you have any questions.”",
+    signoff: "Consistently signs off “Kindest Regards” then first name, followed by the Outlook auto-signature block (“Kind Regards, Richard Permewan, Bungle Group…”) — the double sign-off shows up on almost every sent email.",
+    tone: "Warm but businesslike. Terse with close colleagues (e.g. “Hi Dani, yes I am. DH?”), more measured with external partners and customers."
+  }
+};
+
+function fmtTime(iso) {
+  const d = new Date(iso);
+  const now = new Date(DATA.lastSync);
+  const diffH = Math.round((now - d) / 36e5);
+  if (diffH < 1) return "just now";
+  if (diffH < 24) return diffH + "h ago";
+  return Math.round(diffH / 24) + "d ago";
+}
+
+function renderStats() {
+  const unreadEmail = DATA.inbox.filter(i => i.source === "email" && i.unread).length;
+  const unreadWa = DATA.inbox.filter(i => i.source === "whatsapp" && i.unread).length;
+  const urgentN = DATA.urgent.length;
+  const openCommits = DATA.commitments.filter(c => c.status === "open").length;
+
+  const tiles = [
+    { n: unreadEmail, l: "Unread emails", cls: "" },
+    { n: urgentN, l: "Urgent actions", cls: "crit" },
+    { n: openCommits, l: "Open commitments", cls: "warn" },
+    { n: unreadWa, l: "WhatsApp unread (demo)", cls: "" },
+  ];
+  document.getElementById("statRow").innerHTML = tiles.map(t =>
+    `<div class="stat-tile ${t.cls}"><div class="n">${t.n}</div><div class="l">${t.l}</div></div>`
+  ).join("");
+}
+
+function renderUrgent() {
+  document.getElementById("urgentCount").textContent = DATA.urgent.length;
+  document.getElementById("urgentList").innerHTML = DATA.urgent.map(u => `
+    <div class="card">
+      <div class="card-row">
+        <div class="card-main">
+          <span class="badge ${u.level}">${u.level}</span>
+          <span class="badge ${u.source}">${u.source === 'whatsapp' ? 'WhatsApp' : 'Email'}</span>
+          ${u.demo ? '<span class="badge muted">demo</span>' : ''}
+          <p class="card-title" style="margin-top:6px;">${u.title}</p>
+          <p class="card-sub">${u.from}</p>
+          <p class="card-snippet">${u.snippet}</p>
+        </div>
+        <span class="card-time">${fmtTime(u.time)}</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderInbox(filter) {
+  const items = DATA.inbox.filter(i => filter === "all" || i.source === filter);
+  document.getElementById("inboxCount").textContent = DATA.inbox.length + ` (of ${DATA.emailInboxTotal.toLocaleString()} total in mailbox)`;
+  document.getElementById("inboxList").innerHTML = items.map(i => `
+    <div class="card filterable" data-src="${i.source}">
+      <div class="card-row">
+        <span class="dot ${i.unread ? 'unread' : ''}" style="${i.unread ? '' : 'background:var(--text-muted);opacity:.3;'}"></span>
+        <div class="card-main">
+          <span class="badge ${i.source}">${i.source === 'whatsapp' ? 'WhatsApp' : 'Email'}</span>
+          ${i.demo ? '<span class="badge muted">demo</span>' : ''}
+          <p class="card-title" style="margin-top:6px;">${i.subject || i.contact}</p>
+          ${i.from ? `<p class="card-sub">${i.from}</p>` : ''}
+          <p class="card-snippet">${i.snippet}</p>
+        </div>
+        <span class="card-time">${fmtTime(i.time)}</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderCommitments() {
+  document.getElementById("commitCount").textContent = DATA.commitments.length;
+  document.getElementById("commitList").innerHTML = DATA.commitments.map(c => `
+    <div class="card">
+      <div class="card-row">
+        <div class="card-main">
+          <span class="badge ${c.status === 'done' ? 'good' : 'warning'}">${c.status === 'done' ? 'Done' : 'Open'}</span>
+          <p class="card-title" style="margin-top:6px;">${c.text}</p>
+          <p class="card-sub">${c.context} &middot; ${fmtTime(c.made)}</p>
+          ${c.resolvedNote ? `<p class="card-snippet">${c.resolvedNote}</p>` : ''}
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderDraftsEmail() {
+  document.getElementById("draftEmailCount").textContent = DATA.draftsEmail.length;
+  document.getElementById("draftEmailList").innerHTML = DATA.draftsEmail.map(d => `
+    <div class="card draft-card">
+      <p class="card-sub">To: <strong>${d.to}</strong> &middot; ${d.subject}</p>
+      <textarea id="ta_${d.id}">${d.body}</textarea>
+      <div class="draft-actions">
+        <button class="primary" onclick="copyDraft('${d.id}')">Copy</button>
+        <button onclick="markSent('${d.id}')">Mark as sent</button>
+        <span class="status" id="status_${d.id}">Copied ✓</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+function renderDraftsWhatsapp() {
+  document.getElementById("draftWaList").innerHTML = DATA.draftsWhatsapp.map(d => `
+    <div class="card draft-card">
+      <p class="card-sub">To: <strong>${d.to}</strong> <span class="badge muted">demo</span></p>
+      <textarea id="ta_${d.id}">${d.body}</textarea>
+      <div class="draft-actions">
+        <button class="primary" onclick="copyDraft('${d.id}')">Copy</button>
+        <button onclick="markSent('${d.id}')">Mark as sent</button>
+        <span class="status" id="status_${d.id}">Copied ✓</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+function copyDraft(id) {
+  const ta = document.getElementById("ta_" + id);
+  navigator.clipboard?.writeText(ta.value).catch(() => {});
+  const s = document.getElementById("status_" + id);
+  s.textContent = "Copied ✓";
+  s.classList.add("show");
+  setTimeout(() => s.classList.remove("show"), 1500);
+}
+function markSent(id) {
+  const s = document.getElementById("status_" + id);
+  s.textContent = "Marked as sent ✓";
+  s.classList.add("show");
+  setTimeout(() => s.classList.remove("show"), 1500);
+}
+
+function renderStyle() {
+  const s = DATA.style;
+  document.getElementById("stylePanel").innerHTML = `
+    <p><strong>Greeting:</strong> ${s.greeting}</p>
+    <p><strong>Body:</strong> ${s.body}</p>
+    <p><strong>Sign-off:</strong> ${s.signoff}</p>
+    <p><strong>Tone:</strong> ${s.tone}</p>
+    <p style="margin-top:10px;color:var(--text-muted);font-size:12px;">Built from your ${'50'} most recent inbox emails and 25 most recent sent emails via Microsoft 365. Draft replies above are written to match this profile.</p>
+  `;
+}
+
+function renderFooter() {
+  const d = new Date(DATA.lastSync);
+  document.getElementById("syncBadge").textContent = "Email synced " + d.toLocaleString();
+  document.getElementById("footerNote").innerHTML = `
+    Email data is live from Microsoft 365 (richard@bunglegroup.com), pulled ${d.toLocaleString()}.<br>
+    WhatsApp is placeholder/demo data: WASenderAPI's REST &amp; MCP endpoints are currently blocked by this environment's network egress policy, and the MCP connector isn't wired into this coding session &mdash; both need to be resolved before real WhatsApp data can flow in. Contact &amp; message names above are illustrative only.
+  `;
+}
+
+document.querySelectorAll(".tabbar button").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tabbar button").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderInbox(btn.dataset.filter);
+  });
+});
+
+renderStats();
+renderUrgent();
+renderInbox("all");
+renderCommitments();
+renderDraftsEmail();
+renderDraftsWhatsapp();
+renderStyle();
+renderFooter();
+</script>
+</body>
+</html>
