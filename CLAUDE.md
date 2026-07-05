@@ -72,6 +72,35 @@ claude mcp add --transport http myserver https://api.example.com/mcp \
   --header "X-Custom-Header: value"
 ```
 
+### Verifying the Connection
+
+After adding an HTTP MCP server, verify it's working:
+
+```bash
+# List all configured servers
+claude mcp list
+
+# Check details and connection status
+claude mcp get wasenderapi
+```
+
+If the status shows `✓ Connected`, the server is reachable and responding. If it shows
+`× Failed to connect`, check:
+
+1. **URL is correct** — verify the endpoint is accessible
+2. **Headers are valid** — test with curl to confirm the Bearer token works
+3. **Network access** — HTTP transport requires outbound HTTPS access
+4. **MCP protocol** — the endpoint must respond with valid MCP protocol messages
+
+### Testing with curl
+
+```bash
+curl -X POST https://wasenderapi.com/mcp \
+  -H "Authorization: Bearer YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "method": "initialize", "params": {}, "id": 1}'
+```
+
 ### Notes
 
 - HTTP transport requires the MCP server to expose its protocol over HTTP
