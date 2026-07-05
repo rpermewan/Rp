@@ -39,3 +39,43 @@ Notes:
   set up; `onboarding@resend.dev` only works for testing to your own account.
 - `RESEND_API_KEY` must be a real key. If it equals `re_your_actual_key` it is
   still the placeholder and sending will fail with a 401.
+
+## MCP HTTP Transport
+
+MCP servers can be added with HTTP transport for APIs that support the MCP
+protocol over HTTP. Use the `claude mcp add` command with the `--transport http`
+flag:
+
+```bash
+claude mcp add --transport http <name> <url> [--header "Header: value"]
+```
+
+### Example: Adding an HTTP MCP Server
+
+To add the WASender API as an HTTP MCP server:
+
+```bash
+claude mcp add --transport http wasenderapi https://wasenderapi.com/mcp \
+  --header "Authorization: Bearer ff433fdeec716ff855e35688ebdbb5418e6542bd7c7c84f1b42fd14086f15355"
+```
+
+This registers:
+- **name**: `wasenderapi` — identifier for the server
+- **url**: `https://wasenderapi.com/mcp` — HTTP endpoint for the MCP server
+- **header**: Custom HTTP headers (e.g., authentication tokens)
+
+Multiple headers can be added by repeating `--header`:
+
+```bash
+claude mcp add --transport http myserver https://api.example.com/mcp \
+  --header "Authorization: Bearer token123" \
+  --header "X-Custom-Header: value"
+```
+
+### Notes
+
+- HTTP transport requires the MCP server to expose its protocol over HTTP
+- Headers are passed with each request to the MCP server
+- Sensitive tokens (like Bearer tokens) should be protected and not committed
+  to version control
+- The MCP server must respond with valid MCP protocol messages
