@@ -2,40 +2,21 @@
 
 ## Email
 
-**Always send email via Resend, using the Resend REST API directly.** Do not
-use Gmail, Outlook, Microsoft 365, or any other email method.
+**Always send email via the Zapier MCP connector.** Do not use Resend, Gmail,
+or any direct API/SMTP method to send mail.
 
-This project does **not** use a Resend MCP server. Instead, the cloud
-environment is configured for direct API access:
-
-- Allowed domain: `api.resend.com`
-- Secret: `RESEND_API_KEY` (a real `re_...` key, stored in the environment's
-  **Secrets**, not plaintext env vars)
+**Always search and read email via the Microsoft 365 MCP connector**
+(`mcp__Microsoft-365__outlook_email_search`, etc.). Do not use Zapier or any
+other method to search/read mail.
 
 ### How to send
 
-Use the helper script:
+1. Call `mcp__Zapier__list_enabled_zapier_actions` to see what's available.
+2. If no email-send action is enabled, use `mcp__Zapier__discover_zapier_actions`
+   then `mcp__Zapier__enable_zapier_action` to add one (e.g. an Outlook/Gmail
+   "Send Email" action, whichever is configured for this account).
+3. Call `mcp__Zapier__execute_zapier_write_action` with the enabled action to
+   send the email.
 
-```bash
-./scripts/send-email.sh "to@example.com" "Subject line" "Body text"
-```
-
-Or call the API directly:
-
-```bash
-curl -s -X POST https://api.resend.com/emails \
-  -H "Authorization: Bearer $RESEND_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "from": "onboarding@resend.dev",
-    "to": ["to@example.com"],
-    "subject": "Subject line",
-    "text": "Body text"
-  }'
-```
-
-Notes:
-- Replace the `from` address with a verified Resend sending domain once one is
-  set up; `onboarding@resend.dev` only works for testing to your own account.
-- `RESEND_API_KEY` must be a real key. If it equals `re_your_actual_key` it is
-  still the placeholder and sending will fail with a 401.
+The `scripts/send-email.sh` script and the Resend API are no longer used —
+do not reintroduce them.
