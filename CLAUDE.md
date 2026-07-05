@@ -1,5 +1,12 @@
 # Project Memory
 
+## WhatsApp Business
+
+**WhatsApp Business Account**: Already set up and configured.
+**Integration Method**: WASenderAPI MCP connector
+- Endpoint: https://wasenderapi.com/mcp (HTTP) - ✔ Connected
+- Use this for retrieving WhatsApp messages, generating AI-powered suggested replies based on user's writing style, and managing draft messages
+
 ## Email
 
 **Always send email via Resend, using the Resend REST API directly.** Do not
