@@ -4,17 +4,17 @@
 
 :root {
   /* Palette */
-  --ground:   #F6F4EF;   /* warm paper */
-  --paper-2:  #EFEAE1;   /* deeper paper for alt bands */
-  --ink:      #16140F;   /* warm near-black text */
-  --accent:   #ED3E38;   /* brand red */
-  --accent-d: #C92E29;   /* darker red for hovers */
-  --steel:    #6E6C63;   /* warm utility grey */
-  --line:     rgba(22, 20, 15, 0.14);
-  --line-2:   rgba(22, 20, 15, 0.28);
-  --dark:     #161412;   /* inverted ground */
-  --dark-2:   #211E18;   /* raised dark panel */
-  --on-dark:  #F2EFE8;
+  --ground:   #FFFEF9;   /* warm cream */
+  --paper-2:  #F5F0E8;   /* warm linen */
+  --ink:      #1C1917;   /* warm near-black text */
+  --accent:   #DC2626;   /* brand red */
+  --accent-d: #B91C1C;   /* darker red for hovers */
+  --steel:    #78716C;   /* warm stone */
+  --line:     rgba(28, 25, 23, 0.12);
+  --line-2:   rgba(28, 25, 23, 0.24);
+  --dark:     #292524;   /* warm dark stone */
+  --dark-2:   #3D3734;   /* warm raised panel */
+  --on-dark:  #F7F3EE;
   --on-dark-dim: rgba(242, 239, 232, 0.62);
 
   /* Type */
