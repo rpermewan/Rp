@@ -423,6 +423,12 @@ section { padding-block: clamp(3.5rem, 8vw, 7rem); }
   position: relative;
   overflow: hidden;
 }
+.photo-export {
+  background:
+    linear-gradient(to top, rgba(0,0,0,0.50) 0%, rgba(0,0,0,0.10) 50%, transparent 100%),
+    url('assets/services-export.jpg') center/cover no-repeat;
+}
+
 .photo-fmcg {
   background:
     linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.10) 50%, transparent 100%),
