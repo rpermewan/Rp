@@ -423,6 +423,12 @@ section { padding-block: clamp(3.5rem, 8vw, 7rem); }
   position: relative;
   overflow: hidden;
 }
+.photo-fmcg {
+  background:
+    linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.10) 50%, transparent 100%),
+    url('assets/products-fmcg.jpg') center/cover no-repeat;
+}
+
 .photo-citrus {
   background:
     linear-gradient(to top, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.12) 50%, transparent 100%),
