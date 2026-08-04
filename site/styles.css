@@ -411,8 +411,8 @@ section { padding-block: clamp(3.5rem, 8vw, 7rem); }
 .photo {
   border-radius: var(--radius);
   background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,0.05) 0 18px, transparent 18px 36px),
-    linear-gradient(160deg, var(--dark-2), var(--dark));
+    linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.15) 50%, transparent 100%),
+    url('assets/hero-port.jpg') center/cover no-repeat;
   color: var(--on-dark-dim);
   min-height: 320px;
   display: flex;
