@@ -39,3 +39,20 @@ Notes:
   set up; `onboarding@resend.dev` only works for testing to your own account.
 - `RESEND_API_KEY` must be a real key. If it equals `re_your_actual_key` it is
   still the placeholder and sending will fail with a 401.
+
+## Harmony ERP
+
+Harmony is the company's ERP system: Lovable frontend + Supabase backend.
+
+- **Lovable project**: "Harmony ERP" (`bungle-harmony`), workspace `richard's
+  Lovable` (`O2o3JgZYDdpgy6EZ757f`), project id
+  `6c97eaf5-5bb0-4a98-baed-7e6e8346b740`
+  - Live: https://bungle-harmony.lovable.app
+  - Editor: https://lovable.dev/projects/6c97eaf5-5bb0-4a98-baed-7e6e8346b740
+- **Supabase backend**: project `ERP2erp2`
+  - Project ref: `cnftaaosndgftqinredq`
+  - Postgres database name: `postgres`
+  - Schema: `public`
+  - API URL: `https://api.bungle.app` (custom domain in front of
+    `https://cnftaaosndgftqinredq.supabase.co`)
+  - Region: ap-southeast-2
