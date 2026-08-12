@@ -10,10 +10,12 @@ document.addEventListener('click', (e) => {
   }
 });
 
-// Duplicate ticker content for a seamless marquee loop
-document.querySelectorAll('.ticker-track').forEach((track) => {
-  track.innerHTML += track.innerHTML;
-});
+// Duplicate ticker content for a seamless marquee loop (skip if reduced motion)
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  document.querySelectorAll('.ticker-track').forEach((track) => {
+    track.innerHTML += track.innerHTML;
+  });
+}
 
 // Mark current nav item
 const here = (location.pathname.split('/').pop() || 'index.html');
