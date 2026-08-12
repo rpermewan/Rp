@@ -1,5 +1,5 @@
 /* ============================================================
-   BUNGLE GROUP — "Logistics Dossier" design system
+   BUNGLE GROUP — “Logistics Dossier” design system
    ============================================================ */
 
 :root {
@@ -270,6 +270,7 @@ section { padding-block: clamp(3.5rem, 8vw, 7rem); }
 }
 .hero h1 { margin-bottom: 1.4rem; }
 .hero h1 .hl { color: var(--accent); }
+.hero h1 .h1-sub { font-size: 0.7em; display: block; margin-top: 0.2em; }
 .hero .lead { margin-bottom: 2rem; max-width: 46ch; }
 
 /* Manifest card */
