@@ -1,0 +1,40 @@
+{
+  "documents": [
+    {
+      "title": "Standard Trading Terms",
+      "category": "Terms · General",
+      "description": "Our standard terms and conditions of supply, governing all commercial transactions with Bungle Group.",
+      "filename": "bungle-group-trading-terms.pdf"
+    },
+    {
+      "title": "Export Terms & Conditions",
+      "category": "Terms · Export",
+      "description": "Terms covering international export orders, payment, insurance, documentation requirements and claims procedures.",
+      "filename": "bungle-group-export-terms.pdf"
+    },
+    {
+      "title": "Quality Standards & Specifications",
+      "category": "Standards · Quality",
+      "description": "Our product quality standards and grading specifications for fresh produce — for retail, export and institutional customers.",
+      "filename": "bungle-group-quality-standards.pdf"
+    },
+    {
+      "title": "Anti-Corruption & Business Ethics Policy",
+      "category": "Policy · Compliance",
+      "description": "Our zero-tolerance approach to corruption and bribery — compliant with Australian and PNG foreign bribery law and the UN Supplier Code of Conduct.",
+      "filename": "bungle-group-anti-corruption-policy.pdf"
+    },
+    {
+      "title": "Modern Slavery Statement",
+      "category": "Statement · Compliance",
+      "description": "Our annual modern slavery statement — covering supply chain risk assessment, due diligence and remediation measures.",
+      "filename": "bungle-group-modern-slavery-statement.pdf"
+    },
+    {
+      "title": "Privacy Policy",
+      "category": "Policy · Privacy",
+      "description": "How Bungle Group collects, holds, uses and discloses personal information, in accordance with the Privacy Act 1988 (Cth).",
+      "filename": "bungle-group-privacy-policy.pdf"
+    }
+  ]
+}

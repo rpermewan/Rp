@@ -1,0 +1,134 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: site/assets/images
+public_folder: /assets/images
+
+collections:
+  - name: "seasonal-calendar"
+    label: "Seasonal Availability"
+    files:
+      - name: "calendar"
+        label: "Calendar Rows"
+        file: "site/data/seasonal-calendar.json"
+        fields:
+          - label: "Varieties"
+            name: "varieties"
+            widget: "list"
+            summary: "{{fields.variety}}"
+            fields:
+              - {label: "Variety name", name: "variety", widget: "string"}
+              - label: "January"
+                name: "jan"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "February"
+                name: "feb"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "March"
+                name: "mar"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "April"
+                name: "apr"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "May"
+                name: "may"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "June"
+                name: "jun"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "July"
+                name: "jul"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "August"
+                name: "aug"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "September"
+                name: "sep"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "October"
+                name: "oct"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "November"
+                name: "nov"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+              - label: "December"
+                name: "dec"
+                widget: "select"
+                options:
+                  - {label: "Out of season", value: "off"}
+                  - {label: "Available", value: "available"}
+                  - {label: "Peak season", value: "peak"}
+                default: "off"
+
+  - name: "trading-terms"
+    label: "Trading Terms Documents"
+    files:
+      - name: "documents"
+        label: "Documents"
+        file: "site/data/trading-terms.json"
+        fields:
+          - label: "Documents"
+            name: "documents"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - {label: "Document Title", name: "title", widget: "string"}
+              - {label: "Category Label", name: "category", widget: "string", hint: "e.g. Terms · General"}
+              - {label: "Description", name: "description", widget: "text"}
+              - {label: "PDF Filename", name: "filename", widget: "string", hint: "Filename only, e.g. bungle-group-trading-terms.pdf"}

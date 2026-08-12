@@ -1,0 +1,10 @@
+{
+  "varieties": [
+    {"variety": "Navel oranges", "jan": "off", "feb": "off", "mar": "off", "apr": "off", "may": "available", "jun": "peak", "jul": "peak", "aug": "peak", "sep": "available", "oct": "available", "nov": "off", "dec": "off"},
+    {"variety": "Valencia oranges", "jan": "peak", "feb": "available", "mar": "available", "apr": "off", "may": "off", "jun": "off", "jul": "off", "aug": "off", "sep": "available", "oct": "available", "nov": "peak", "dec": "peak"},
+    {"variety": "Lemons", "jan": "available", "feb": "available", "mar": "peak", "apr": "peak", "may": "peak", "jun": "peak", "jul": "available", "aug": "available", "sep": "available", "oct": "available", "nov": "available", "dec": "available"},
+    {"variety": "Mandarins", "jan": "off", "feb": "off", "mar": "off", "apr": "available", "may": "peak", "jun": "peak", "jul": "peak", "aug": "available", "sep": "available", "oct": "off", "nov": "off", "dec": "off"},
+    {"variety": "Table grapes", "jan": "available", "feb": "peak", "mar": "peak", "apr": "peak", "may": "available", "jun": "off", "jul": "off", "aug": "off", "sep": "off", "oct": "off", "nov": "off", "dec": "available"},
+    {"variety": "Apples", "jan": "available", "feb": "available", "mar": "peak", "apr": "peak", "may": "peak", "jun": "peak", "jul": "available", "aug": "available", "sep": "available", "oct": "available", "nov": "available", "dec": "available"}
+  ]
+}
