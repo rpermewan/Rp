@@ -1,28 +1,10 @@
 {
   "documents": [
-    {
-      "title": "Anti-Corruption & Business Ethics Policy",
-      "category": "Policy · Compliance",
-      "description": "Our zero-tolerance approach to corruption and bribery — compliant with Australian and PNG foreign bribery law and the UN Supplier Code of Conduct.",
-      "filename": "bungle-group-anti-corruption-policy.pdf"
-    },
-    {
-      "title": "Modern Slavery Statement",
-      "category": "Statement · Compliance",
-      "description": "Our annual modern slavery statement — covering supply chain risk assessment, due diligence and remediation measures.",
-      "filename": "bungle-group-modern-slavery-statement.pdf"
-    },
-    {
-      "title": "Privacy Policy",
-      "category": "Policy · Privacy",
-      "description": "How Bungle Group collects, holds, uses and discloses personal information, in accordance with the Privacy Act 1988 (Cth).",
-      "filename": "bungle-group-privacy-policy.pdf"
-    },
-    {
-      "description": "\nA new mandatory code of conduct for the horticulture wholesale sector was introduced on 14 May 2007 and updated from 1 April 2017. The code is designed to improve clarity and transparency in transactions between growers and wholesalers of fresh fruit and vegetables. For further information about the Horticulture Code of Conduct please visit the Department of Agriculture, Fisheries and Forestry.\n\n \n\nPlease click the link below to download a copy of the terms of trade",
-      "title": " Trading Terms",
-      "category": " Trading Terms",
-      "filename": "FORM B - HPA 2017 published  - version 2"
-    }
+    {"title": "Standard Trading Terms", "category": "Terms · General", "description": "Our standard terms and conditions of supply, governing all commercial transactions with Bungle Group.", "filename": "/assets/docs/bungle-group-trading-terms.pdf"},
+    {"title": "Export Terms & Conditions", "category": "Terms · Export", "description": "Terms covering international export orders, payment, insurance, documentation requirements and claims procedures.", "filename": "/assets/docs/bungle-group-export-terms.pdf"},
+    {"title": "Quality Standards & Specifications", "category": "Standards · Quality", "description": "Our product quality standards and grading specifications for fresh produce — for retail, export and institutional customers.", "filename": "/assets/docs/bungle-group-quality-standards.pdf"},
+    {"title": "Anti-Corruption & Business Ethics Policy", "category": "Policy · Compliance", "description": "Our zero-tolerance approach to corruption and bribery — compliant with Australian and PNG foreign bribery law and the UN Supplier Code of Conduct.", "filename": "/assets/docs/bungle-group-anti-corruption-policy.pdf"},
+    {"title": "Modern Slavery Statement", "category": "Statement · Compliance", "description": "Our annual modern slavery statement — covering supply chain risk assessment, due diligence and remediation measures.", "filename": "/assets/docs/bungle-group-modern-slavery-statement.pdf"},
+    {"title": "Privacy Policy", "category": "Policy · Privacy", "description": "How Bungle Group collects, holds, uses and discloses personal information, in accordance with the Privacy Act 1988 (Cth).", "filename": "/assets/docs/bungle-group-privacy-policy.pdf"}
   ]
 }

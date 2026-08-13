@@ -118,6 +118,8 @@ collections:
 
   - name: "trading-terms"
     label: "Trading Terms Documents"
+    media_folder: "site/assets/docs"
+    public_folder: "/assets/docs"
     files:
       - name: "documents"
         label: "Documents"
@@ -131,4 +133,8 @@ collections:
               - {label: "Document Title", name: "title", widget: "string"}
               - {label: "Category Label", name: "category", widget: "string", hint: "e.g. Terms · General"}
               - {label: "Description", name: "description", widget: "text"}
-              - {label: "PDF Filename", name: "filename", widget: "string", hint: "Filename only, e.g. bungle-group-trading-terms.pdf"}
+              - label: "PDF File"
+                name: "filename"
+                widget: "file"
+                hint: "Upload the PDF — or enter a path like /assets/docs/my-file.pdf"
+                allow_multiple: false

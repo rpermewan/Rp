@@ -54,7 +54,7 @@ if (docsGrid) {
           <span class="num">PDF · ${doc.category}</span>
           <h3 class="h-s">${doc.title}</h3>
           <p>${doc.description}</p>
-          <a href="assets/docs/${doc.filename}" class="btn btn-ghost" download>Download <span class="arrow">↓</span></a>
+          <a href="${doc.filename}" class="btn btn-ghost" download>Download <span class="arrow">↓</span></a>
         </article>`
       ).join('');
     })
