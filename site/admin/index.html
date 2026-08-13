@@ -4,9 +4,33 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bungle Group — Admin</title>
+  <style>
+    /* Hide sign-up option from the Netlify Identity widget */
+    [data-netlify-identity-signup],
+    .netlify-identity-widget .signup,
+    [data-testid="signup-link"],
+    a[href*="signup"],
+    button[data-tab="signup"],
+    [data-tab="signup"],
+    .gotrue-actions a:last-child { display: none !important; }
+  </style>
 </head>
 <body>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    /* After the Identity widget opens, remove any sign-up tabs/links from the DOM */
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on('open', function () {
+        var remove = function () {
+          document.querySelectorAll(
+            '[data-tab="signup"], [data-netlify-identity-signup], a[data-action="signup"]'
+          ).forEach(function (el) { el.style.display = 'none'; });
+        };
+        remove();
+        setTimeout(remove, 300);
+      });
+    }
+  </script>
 </body>
 </html>
