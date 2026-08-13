@@ -6,6 +6,218 @@ media_folder: site/assets/images
 public_folder: /assets/images
 
 collections:
+
+  # ─── Site Photography ─────────────────────────────────────────────────
+  - name: "site-images"
+    label: "Site Photography"
+    files:
+      - name: "images"
+        label: "Photo Slots"
+        file: "site/data/images.json"
+        fields:
+          - {label: "Hero / Port photo", name: "hero", widget: "image", hint: "Homepage hero photo"}
+          - {label: "Citrus grading photo", name: "citrus", widget: "image"}
+          - {label: "PNG camp collage", name: "camp_collage", widget: "image"}
+          - {label: "PNG camp wide", name: "camp_wide", widget: "image"}
+          - {label: "Mine site photo", name: "minesite", widget: "image"}
+          - {label: "Packing / 3PL photo", name: "packing", widget: "image"}
+          - {label: "Dairy products photo", name: "dairy", widget: "image"}
+          - {label: "Export / containers photo", name: "export", widget: "image"}
+          - {label: "FMCG grocery photo", name: "fmcg", widget: "image"}
+
+  # ─── Page text — Home ─────────────────────────────────────────────────
+  - name: "page-index"
+    label: "Home Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/index.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero heading — second line", name: "hero_h1_sub", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "What we do — heading", name: "what_heading", widget: "string"}
+          - {label: "What we do — body", name: "what_body", widget: "text"}
+          - {label: "Markets — heading", name: "markets_heading", widget: "string"}
+          - {label: "Markets — body", name: "markets_body", widget: "text"}
+          - {label: "Why Bungle — heading", name: "why_heading", widget: "string"}
+          - {label: "Why Bungle — body", name: "why_body", widget: "text"}
+          - {label: "Certifications — heading", name: "certs_heading", widget: "string"}
+          - {label: "Certifications — body", name: "certs_body", widget: "text"}
+          - {label: "CTA heading", name: "cta_heading", widget: "string"}
+
+  # ─── Page text — About ────────────────────────────────────────────────
+  - name: "page-about"
+    label: "About Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/about.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "Who we are — heading", name: "who_heading", widget: "string"}
+          - {label: "Who we are — paragraph 1", name: "who_body_1", widget: "text"}
+          - {label: "Who we are — paragraph 2", name: "who_body_2", widget: "text"}
+          - {label: "Who we are — paragraph 3", name: "who_body_3", widget: "text"}
+          - {label: "Values — heading", name: "values_heading", widget: "string"}
+          - {label: "Values — intro", name: "values_intro", widget: "text"}
+          - {label: "Evolution — heading", name: "evolution_heading", widget: "string"}
+          - {label: "Evolution — intro", name: "evolution_intro", widget: "text"}
+          - {label: "Founder — heading", name: "founder_heading", widget: "string"}
+          - {label: "Founder — paragraph 1", name: "founder_body_1", widget: "text"}
+          - {label: "Founder — paragraph 2", name: "founder_body_2", widget: "text"}
+
+  # ─── Page text — What We Do ───────────────────────────────────────────
+  - name: "page-what-we-do"
+    label: "What We Do Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/what-we-do.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "Export — heading", name: "export_heading", widget: "string"}
+          - {label: "Export — body", name: "export_body", widget: "text"}
+          - {label: "Procurement — heading", name: "procurement_heading", widget: "string"}
+          - {label: "Procurement — body", name: "procurement_body", widget: "text"}
+          - {label: "Supply chain — heading", name: "supply_heading", widget: "string"}
+          - {label: "Supply chain — body", name: "supply_body", widget: "text"}
+          - {label: "Domestic produce — heading", name: "domestic_heading", widget: "string"}
+          - {label: "Domestic produce — body", name: "domestic_body", widget: "text"}
+
+  # ─── Page text — Products ─────────────────────────────────────────────
+  - name: "page-products"
+    label: "Products Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/products.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "Fresh produce — heading", name: "fresh_heading", widget: "string"}
+          - {label: "Fresh produce — intro", name: "fresh_intro", widget: "text"}
+          - {label: "Citrus — heading", name: "citrus_heading", widget: "string"}
+          - {label: "Citrus — body", name: "citrus_body", widget: "text"}
+          - {label: "Growers — heading", name: "growers_heading", widget: "string"}
+          - {label: "Growers — paragraph 1", name: "growers_body_1", widget: "text"}
+          - {label: "Growers — paragraph 2", name: "growers_body_2", widget: "text"}
+          - {label: "Growers — paragraph 3", name: "growers_body_3", widget: "text"}
+          - {label: "Frozen — heading", name: "frozen_heading", widget: "string"}
+          - {label: "Frozen — body", name: "frozen_body", widget: "text"}
+          - {label: "Dairy — heading", name: "dairy_heading", widget: "string"}
+          - {label: "Dairy — body", name: "dairy_body", widget: "text"}
+          - {label: "FMCG — heading", name: "fmcg_heading", widget: "string"}
+          - {label: "FMCG — body", name: "fmcg_body", widget: "text"}
+
+  # ─── Page text — Retail ───────────────────────────────────────────────
+  - name: "page-retail"
+    label: "Retail Customers Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/retail.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "Fruit quality — heading", name: "quality_heading", widget: "string"}
+          - {label: "Fruit quality — intro", name: "quality_intro", widget: "text"}
+          - {label: "Requirements — heading", name: "requirements_heading", widget: "string"}
+          - {label: "Requirements — intro", name: "requirements_intro", widget: "text"}
+          - {label: "Retail landscape — heading", name: "landscape_heading", widget: "string"}
+
+  # ─── Page text — Institutional ────────────────────────────────────────
+  - name: "page-institutional"
+    label: "Institutional Customers Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/institutional.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "Who we serve — heading", name: "who_heading", widget: "string"}
+          - {label: "Who we serve — body", name: "who_body", widget: "text"}
+          - {label: "Commercial integrity — heading", name: "integrity_heading", widget: "string"}
+          - {label: "Cybersecurity — heading", name: "cyber_heading", widget: "string"}
+          - {label: "Cybersecurity — intro", name: "cyber_intro", widget: "text"}
+
+  # ─── Page text — PNG & the Pacific ────────────────────────────────────
+  - name: "page-png-pacific"
+    label: "PNG & the Pacific Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/png-pacific.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "PNG — heading", name: "png_heading", widget: "string"}
+          - {label: "PNG — paragraph 1", name: "png_body_1", widget: "text"}
+          - {label: "PNG — paragraph 2", name: "png_body_2", widget: "text"}
+          - {label: "Mine-site — heading", name: "mining_heading", widget: "string"}
+          - {label: "Mine-site — body", name: "mining_body", widget: "text"}
+          - {label: "Airline — heading", name: "airline_heading", widget: "string"}
+          - {label: "Airline — body", name: "airline_body", widget: "text"}
+          - {label: "Hotels — heading", name: "hotels_heading", widget: "string"}
+          - {label: "Hotels — body", name: "hotels_body", widget: "text"}
+
+  # ─── Page text — Asia ─────────────────────────────────────────────────
+  - name: "page-asia"
+    label: "Asia, Middle East & Beyond Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/asia.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "Reach & partnerships — heading", name: "reach_heading", widget: "string"}
+          - {label: "Reach & partnerships — paragraph 1", name: "reach_body_1", widget: "text"}
+          - {label: "Reach & partnerships — paragraph 2", name: "reach_body_2", widget: "text"}
+
+  # ─── Page text — Quality ──────────────────────────────────────────────
+  - name: "page-quality"
+    label: "Quality & Compliance Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/quality.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+          - {label: "Certifications — heading", name: "certs_heading", widget: "string"}
+          - {label: "Certifications — intro", name: "certs_intro", widget: "text"}
+          - {label: "Integrity — heading", name: "integrity_heading", widget: "string"}
+          - {label: "Integrity — paragraph 1", name: "integrity_body_1", widget: "text"}
+          - {label: "Integrity — paragraph 2", name: "integrity_body_2", widget: "text"}
+          - {label: "Security — heading", name: "security_heading", widget: "string"}
+          - {label: "Security — intro", name: "security_intro", widget: "text"}
+
+  # ─── Page text — Contact ──────────────────────────────────────────────
+  - name: "page-contact"
+    label: "Contact Page"
+    files:
+      - name: "content"
+        label: "Content"
+        file: "site/data/pages/contact.json"
+        fields:
+          - {label: "Hero eyebrow", name: "hero_eyebrow", widget: "string"}
+          - {label: "Hero heading", name: "hero_h1", widget: "string"}
+          - {label: "Hero lead paragraph", name: "hero_lead", widget: "text"}
+
+  # ─── Seasonal availability calendar ───────────────────────────────────
   - name: "seasonal-calendar"
     label: "Seasonal Availability"
     files:
@@ -116,6 +328,7 @@ collections:
                   - {label: "Peak season", value: "peak"}
                 default: "off"
 
+  # ─── Trading Terms Documents ───────────────────────────────────────────
   - name: "trading-terms"
     label: "Trading Terms Documents"
     media_folder: "site/assets/docs"

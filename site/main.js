@@ -26,6 +26,35 @@ document.querySelectorAll('.nav-links a').forEach((a) => {
   }
 });
 
+// Load CMS text overrides for this page
+(function () {
+  var page = location.pathname.split('/').pop().replace('.html', '') || 'index';
+  fetch('/data/pages/' + page + '.json')
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      document.querySelectorAll('[data-cms-field]').forEach(function (el) {
+        var key = el.dataset.cmsField;
+        if (data[key] !== undefined && data[key] !== '') {
+          el.innerHTML = data[key];
+        }
+      });
+    })
+    .catch(function () {});
+})();
+
+// Load CMS image overrides
+fetch('/data/images.json')
+  .then(function (r) { return r.json(); })
+  .then(function (imgs) {
+    document.querySelectorAll('[data-img-slot]').forEach(function (el) {
+      var slot = el.dataset.imgSlot;
+      if (imgs[slot]) {
+        el.style.backgroundImage = "url('" + imgs[slot] + "')";
+      }
+    });
+  })
+  .catch(function () {});
+
 // Seasonal availability calendar — render from /data/seasonal-calendar.json
 const calBody = document.getElementById('cal-body');
 if (calBody) {
